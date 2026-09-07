@@ -5,6 +5,7 @@ import { RutaProtegida } from './shared/components/RutaProtegida'
 import { DashboardPage } from './features/dashboard/DashboardPage'
 import { FormularioIngreso } from './features/contenedores/components/FormularioIngreso'
 import { PaginaUbicaciones } from './features/ubicaciones/PaginaUbicaciones'
+import { PaginaUsuarios } from './features/usuarios/PaginaUsuarios'
 
 function BarraNavegacion() {
   const { usuario, cerrarSesion } = useAuth()
@@ -22,18 +23,23 @@ function BarraNavegacion() {
           Depósito CPC
         </Link>
         <nav className="flex items-center gap-4 text-sm">
-          <Link to="/" className="text-slate-300 transition hover:text-white">
+          {/* <Link to="/" className="text-slate-300 transition hover:text-white">
             Dashboard
           </Link>
           <Link to="/ingreso" className="text-slate-300 transition hover:text-white">
             Ingreso
-          </Link>
+          </Link> */}
           <Link to="/ubicaciones" className="text-slate-300 transition hover:text-white">
             Ubicaciones
           </Link>
+          {usuario?.rol === 'ADMIN' && (
+            <Link to="/usuarios" className="text-slate-300 transition hover:text-white">
+              Usuarios
+            </Link>
+          )}
           {usuario && (
             <>
-              <span className="hidden text-slate-400 sm:inline">{usuario.email}</span>
+              <span className="hidden text-slate-400 sm:inline">{usuario.nombre} {usuario.apellido}</span>
               <button
                 type="button"
                 onClick={alCerrarSesion}
@@ -60,6 +66,9 @@ export default function App() {
             <Route path="/" element={<DashboardPage />} />
             <Route path="/ingreso" element={<FormularioIngreso />} />
             <Route path="/ubicaciones" element={<PaginaUbicaciones />} />
+          </Route>
+          <Route element={<RutaProtegida rolRequerido="ADMIN" />}>
+            <Route path="/usuarios" element={<PaginaUsuarios />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
