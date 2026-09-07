@@ -20,7 +20,7 @@ Abrir http://localhost:5173. La variable `VITE_API_URL` se configura en `.env.lo
 
 ## Usuario de desarrollo
 
-- Email: `admin@empresa.cl`
+- Email: `admin@cpc.cl`
 - Contraseña: `Admin123!` (solo para desarrollo local; viene de la migración seed V2 del backend)
 
 ## Estructura
