@@ -29,9 +29,11 @@ function BarraNavegacion() {
           <Link to="/ingreso" className="text-slate-300 transition hover:text-white">
             Ingreso
           </Link> */}
-          <Link to="/ubicaciones" className="text-slate-300 transition hover:text-white">
-            Ubicaciones
-          </Link>
+          {usuario && (
+            <Link to="/ubicaciones" className="text-slate-300 transition hover:text-white">
+              Ubicaciones
+            </Link>
+          )}
           {usuario?.rol === 'ADMIN' && (
             <Link to="/usuarios" className="text-slate-300 transition hover:text-white">
               Usuarios

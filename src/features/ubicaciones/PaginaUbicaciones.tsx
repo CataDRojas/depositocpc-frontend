@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useUbicaciones, useCrearUbicacion, useActualizarUbicacion, useEliminarUbicacion } from '../contenedores/hooks/useUbicaciones'
 import type { Ubicacion } from '../contenedores/types'
 
@@ -66,7 +67,12 @@ export function PaginaUbicaciones() {
   return (
     <div className="mx-auto max-w-4xl">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-800">Ubicaciones del patio</h1>
+        <div>
+          <Link to="/" className="text-sm font-medium text-sky-600 hover:text-sky-700">
+            ← Volver al dashboard
+          </Link>
+          <h1 className="mt-1 text-2xl font-bold text-slate-800">Ubicaciones del patio</h1>
+        </div>
         <button
           type="button"
           onClick={abrirCrear}
